@@ -1,0 +1,6 @@
+@E2EDemoUserRegistration_HostAddress = http://localhost:5182
+
+GET {{E2EDemoUserRegistration_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
