@@ -1,21 +1,21 @@
 using E2EDemoUserRegistration.Interface;
 using E2EDemoUserRegistration.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace E2EDemoUserRegistration.Repository;
 
-public class UserRepository
+
+public class UserRepository : IUserRepository
 {
-    public class UserRepository : IUserRepository
-{
-    private readonly DbContext _context;
+    private readonly E2EDemoDbContext _context;
     private readonly IConfiguration _configuration;
 
-    public UserRepository(DbContext context, IConfiguration configuration)
+    public UserRepository(E2EDemoDbContext context, IConfiguration configuration)
     {
         _context = context;
         _configuration = configuration;
     }
-    
+
     ///  <summary>
     /// Registers a new user to the database based on the UserRegistrationDto object.
     ///  </summary>
@@ -33,11 +33,11 @@ public class UserRepository
 
             var existingUser = await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == registrationDto.Email);
-            
+
             if (existingUser != null)
                 throw new InvalidOperationException("Email is already in use.");
         }
-        
+
         catch (Exception ex)
         {
             throw new InvalidOperationException("Unable to register user", ex);

@@ -1,5 +1,7 @@
+using E2EDemoUserRegistration.Interface;
 using E2EDemoUserRegistration.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E2EDemoUserRegistration.Controllers;
 
@@ -8,66 +10,51 @@ namespace E2EDemoUserRegistration.Controllers;
 
 public class UserController : ControllerBase
 {
+    private readonly E2EDemoDbContext _context;
     private readonly IUserRepository _userRepository;
 
 
-    public UserController()
+    public UserController(E2EDemoDbContext context, IUserRepository userRepository)
     {
-        /// <summary>/// Registers a new user with the specified registration data and returns a success or failure response.
-        /// </summary>
-        /// <param name="registrationDto">The registration data containing user details such as email, password, and tenant information.</param>
-        /// <returns>An IActionResult indicating whether the user was registered successfully or not with a message in the response body.</returns>
-        [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser([FromBody] UserRegistrationDto registrationDto)
-        {
-            if (registrationDto == null)
-                return BadRequest(new { Message = "Invalid registration data." });
-
-            try
-            {
-                var success = await _userRepository.RegisterUserAsync(registrationDto);
-
-                if (success)
-                    return Ok(new
-                    {
-                        Message = registrationDto.IsInvited
-                            ? "User registered successfully with existing tenant."
-                            : "User registered successfully with new tenant."
-                    });
-            }
-            catch (InvalidOperationException ex)
-            {
-                // Handle known exceptions like email or tenant errors
-                return Conflict(new { Message = ex.Message }); // 409 Conflict for already existing resources
-            }
-            catch (Exception ex)
-            {
-                // Handle unexpected exceptions
-                return StatusCode(500, new { Message = "An unexpected error occurred. Please try again later." });
-            }
-
-            return BadRequest(new { Message = "User registration failed." });
-        }
+        _context = context;
+        _userRepository = userRepository;
     }
-    
-    /// <summary>
-    /// Logs in a user with the specified email and password, returning a JWT token if successful.
+
+    /// <summary>/// Registers a new user with the specified registration data and returns a success or failure response.
     /// </summary>
-    /// <param name="loginDto">The login data containing the user's email and password.</param>
-    /// <returns>An IActionResult indicating whether the user was logged in successfully or not with a JWT token or an error message in the response body.</returns>
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] UserLoginDto loginDto)
+    /// <param name="registrationDto">The registration data containing user details such as email, password, and tenant information.</param>
+    /// <returns>An IActionResult indicating whether the user was registered successfully or not with a message in the response body.</returns>
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterUser([FromBody] UserRegistrationDto registrationDto)
     {
-        var result  = await    _userRepository.LoginAsync(loginDto.Email, loginDto.Password);
+        if (registrationDto == null)
+            return BadRequest(new { Message = "Invalid registration data." });
 
-        if (result   == null)
+        try
         {
-            return   Unauthorized(new   { Message = "Invalid email or password." });
+            var success = await _userRepository.RegisterUserAsync(registrationDto);
+
+            if (success)
+                return Ok(new
+                {
+                    Message = registrationDto.IsInvited
+                        ? "User registered successfully with existing tenant."
+                        : "User registered successfully with new tenant."
+                });
+        }
+        catch (InvalidOperationException ex)
+        {
+            // Handle known exceptions like email or tenant errors
+            return Conflict(new { Message = ex.Message }); // 409 Conflict for already existing resources
+        }
+        catch (Exception ex)
+        {
+            // Handle unexpected exceptions
+            return StatusCode(500, new { Message = "An unexpected error occurred. Please try again later." });
         }
 
-        // Use UserId instead of Id if you're accessing the user ID
-        return Ok(result);    // Returns the LoginResponseDto with the JWT token and other details
+        return BadRequest(new { Message = "User registration failed." });
     }
-    
-    
 }
+    
+    
