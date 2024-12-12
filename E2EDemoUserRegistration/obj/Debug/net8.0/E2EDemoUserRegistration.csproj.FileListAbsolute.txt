@@ -168,3 +168,4 @@
 /Users/kieron/RiderProjects/E2EDemoUserRegistration/E2EDemoUserRegistration/obj/Debug/net8.0/E2EDemoUserRegistration.pdb
 /Users/kieron/RiderProjects/E2EDemoUserRegistration/E2EDemoUserRegistration/obj/Debug/net8.0/E2EDemoUserRegistration.genruntimeconfig.cache
 /Users/kieron/RiderProjects/E2EDemoUserRegistration/E2EDemoUserRegistration/obj/Debug/net8.0/ref/E2EDemoUserRegistration.dll
+/Users/kieron/RiderProjects/E2EDemoUserRegistration/E2EDemoUserRegistration/obj/Debug/net8.0/E2EDemoUserRegistration.sourcelink.json
