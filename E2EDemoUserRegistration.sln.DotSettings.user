@@ -1,0 +1,16 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8fd64aca_002D2c7d_002D4261_002D9373_002Dfbcd5bb2cc33/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="RegisterUser_ShouldNavigateToLoginAfterSuccessfulRegistration #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::2A3AEB2E-35EB-4856-968A-7E42A3A18B72::net8.0::EndToEndTests.RegistrationTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d775c49a_002D6593_002D4f83_002Db638_002Dfc02eb3c4a8e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RegisterUser_ShouldNavigateToLoginAfterSuccessfulRegistration" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::2A3AEB2E-35EB-4856-968A-7E42A3A18B72::net8.0::EndToEndTests.RegistrationTests.RegisterUser_ShouldNavigateToLoginAfterSuccessfulRegistration&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ff43d73d_002D71f3_002D4df0_002Db4e2_002Df35c4c3ee4fc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RegisterUser_ShouldNavigateToLoginAfterSuccessfulRegistration #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::2A3AEB2E-35EB-4856-968A-7E42A3A18B72::net8.0::EndToEndTests.RegistrationTests.RegisterUser_ShouldNavigateToLoginAfterSuccessfulRegistration&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

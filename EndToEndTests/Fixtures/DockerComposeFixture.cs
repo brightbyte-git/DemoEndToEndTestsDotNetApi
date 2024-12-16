@@ -10,7 +10,7 @@ public class DockerComposeFixture
     {
         _containerHealthCheck = new ContainerHealthCheck();
         StartDockerCompose();
-        // WaitForBackend();
+        WaitForBackend();
         WaitForSqlServer();
     }
     
@@ -53,7 +53,7 @@ public class DockerComposeFixture
         {
             try
             {
-                var response = httpClient.GetAsync("http://localhost:5271/swagger/index.html").Result;
+                var response = httpClient.GetAsync("http://localhost:5182/swagger/index.html").Result;
                 if (response.IsSuccessStatusCode) return;
             }
             catch(Exception ex)
@@ -81,33 +81,6 @@ public class DockerComposeFixture
         {
             throw new Exception("Database initialization failed: 'TestE2EDemoDatabase created successfully.' log not found.");
         }
-        
-        var connectionString = "Server=localhost,1432;Database=TestE2EDemoDatabase;User Id=sa;Password=VeryStr0ngP@ssw0rd;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true";
-        
-        // var connectionString = "Server=db,1433;Database=TestKanbanDatabase;User Id=sa;Password=VeryStr0ngP@ssw0rd;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true";
-
-        var maxRetries = 10;
-        var retryCount = 0;
-
-        while (retryCount < maxRetries)
-        {
-            try
-            {
-                using var connection = new SqlConnection(connectionString);
-                connection.Open(); // Try to open the connection
-                Console.WriteLine("Successfully connected to the database.");
-                return; // Exit the method if connection is successful
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"Attem pt {retryCount + 1} failed: {ex.Message}");
-            }
-
-            retryCount++;
-            Thread.Sleep(1000); // Wait 1 second before retrying
-        }
-
-        throw new Exception("Database service did not become healthy within the timeout period.");
     }
 
     public void StopDockerCompose()
