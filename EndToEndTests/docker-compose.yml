@@ -1,4 +1,3 @@
-version: '3.9'
 
 services:
   db:
@@ -25,7 +24,8 @@ services:
       - ./check-sql.sh:/check-sql.sh
     command: >
       bash -c '
-      /check-sql.sh /opt/mssql-tools/bin/sqlcmd -S db,1433 -U sa -P 'VeryStr0ngP@ssw0rd' -d master -i mssql_scripts/init.sql;
+      chmod +x /check-sql.sh && 
+      /check-sql.sh /opt/mssql-tools/bin/sqlcmd -S db,1433 -U sa -P "VeryStr0ngP@ssw0rd" -d master -i mssql_scripts/init.sql &&
       echo "All done!";
       '
     restart: no
@@ -35,10 +35,10 @@ services:
       context: ../  # Current directory (where docker-compose.yml is)
       dockerfile: Dockerfile  # Reference to the Dockerfile in the same directory
     ports:
-      - "5271:8080"
+      - "5182:8080"
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
-      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=E2EDemoTestsServer;User Id=sa;Password=VeryStr0ngP@ssw0rd;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true"
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=TestE2EDemoDatabase;User Id=sa;Password=VeryStr0ngP@ssw0rd;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true"
     depends_on:
       - db
   
