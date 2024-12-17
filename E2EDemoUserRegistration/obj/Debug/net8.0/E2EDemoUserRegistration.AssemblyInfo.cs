@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("E2EDemoUserRegistration")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+737970c809f360c5af9327ddde69a06a90ab5d9c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e44559575d1af1b7dd3d4a666b0b253185499f2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("E2EDemoUserRegistration")]
 [assembly: System.Reflection.AssemblyTitleAttribute("E2EDemoUserRegistration")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
